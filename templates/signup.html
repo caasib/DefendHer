@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<!--
+	Stellar by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>DefendHER Log In</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="static/assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="static/assets/css/noscript.css" /></noscript>
+	</head>
+
+	<!-- Wrapper -->
+
+	<div id="wrapper">
+
+		<header id="header" class="alt">
+			<h1>Sign Up</h1>
+			<form action="/signup" method="POST">
+				<input type="text" name="username" placeholder="Username" required><br>
+				<input type="email" name="email" placeholder="Email" required><br>
+				<input type="password" name="password" placeholder="Password" required><br>
+				<button type="submit">Sign Up</button>
+			</form>
+			{% if error %}
+				<p>{{ error }}</p>
+			{% endif %}
+		</header>
+	</div>
+</html>
