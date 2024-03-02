@@ -41,6 +41,13 @@ def login():
             error = "Invalid credentials. Please try again."
     return render_template('login.html', error=error)
 
+@app.route('/logout')
+def logout():
+    # Clear the user's session data
+    session.clear()
+    # Redirect the user to the home page or a login page
+    return redirect(url_for('homepage'))
+
 @app.route('/Courses', methods=['GET', 'POST'])
 def course_page():
     return render_template('Courses.html')
