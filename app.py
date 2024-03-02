@@ -24,7 +24,7 @@ def login():
 def course_page():
     return render_template('Courses.html')
 
-@app.route('/front', method=['GET', 'POST'])
+@app.route('/front', methods=['GET', 'POST'])
 def front_page():
     return render_template('front.html')
 
