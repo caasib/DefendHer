@@ -1,12 +1,23 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
+import secrets
 
 app = Flask(__name__, static_url_path='/static')
+app.secret_key = secrets.token_urlsafe(32)
 
 users = {'example':'example', 'admin':'innovateher', 'your':'mom'}
 
 @app.route('/', methods=['GET', 'POST'])
 def homepage():
     return render_template('index.html')
+
+@app.after_request
+def store_visited_url(r):
+    
+    session['urls'].append(request.url)
+    if (len(session['urls']) > 3):
+        session['urls'].pop(0)
+    session.modified = True
+    return r
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -26,7 +37,10 @@ def course_page():
 
 @app.route('/front', methods=['GET', 'POST'])
 def front_page():
-    return render_template('front.html')
+    data = []
+    if 'urls' in session:
+        data = session['urls']
+    return render_template('front.html', data=data)
 
 
 if __name__ == "__main__":
