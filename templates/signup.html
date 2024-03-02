@@ -20,13 +20,13 @@
 		<header id="header" class="alt">
 			<h1>Sign Up</h1>
 			<form action="/signup" method="POST">
-				<input type="text" name="username" placeholder="Username" required><br>
+				<input type="text" name="username" placeholder="Username" value="{{ request.form.username }}"><br>
 				<input type="email" name="email" placeholder="Email" required><br>
-				<input type="password" name="password" placeholder="Password" required><br>
+				<input type="password" name="password" placeholder="Password" value="{{ request.form.password }}"><br>
 				<button type="submit">Sign Up</button>
 			</form>
 			{% if error %}
-				<p>{{ error }}</p>
+				<p class="error"><strong>Error:</strong> {{ error }}</p>
 			{% endif %}
 		</header>
 	</div>

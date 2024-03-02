@@ -10,14 +10,18 @@ users = {'example':'example', 'admin':'innovateher', 'your':'mom'}
 def homepage():
     return render_template('index.html')
 
-@app.after_request
-def store_visited_url(r):
-    
-    session['urls'].append(request.url)
-    if (len(session['urls']) > 3):
-        session['urls'].pop(0)
-    session.modified = True
-    return r
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+    error = None
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        if username in users.keys():
+            error = "This username is already taken."
+        else:
+            users[username] = password # worlds least secure user authentication
+            return render_template('front.html')
+    return render_template('signup.html', error=error)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -37,10 +41,7 @@ def course_page():
 
 @app.route('/front', methods=['GET', 'POST'])
 def front_page():
-    data = []
-    if 'urls' in session:
-        data = session['urls']
-    return render_template('front.html', data=data)
+    return render_template('front.html')
 
 
 if __name__ == "__main__":
