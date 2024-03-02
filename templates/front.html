@@ -42,7 +42,10 @@
 										<header class="major">
 											<h2>Recently Visited</h2>
 										</header>
-										
+										<p>Go back to your most recently visited course here.</p>
+										{% for url in urls %}
+											<li><a href="{{ url }}">{{ url }}</a></li>
+										{% endfor %}
 									</div>
 									<span class="image"><img src="static/images/pic01.jpg" alt="" /></span>
 								</div>

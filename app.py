@@ -10,6 +10,12 @@ users = {'example':'example', 'admin':'innovateher', 'your':'mom'}
 def homepage():
     return render_template('index.html')
 
+@app.after_request
+def store_visited_url(r):
+    session['url'] = request.url
+    session.modified = True
+    return r
+
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     error = None
@@ -41,7 +47,10 @@ def course_page():
 
 @app.route('/front', methods=['GET', 'POST'])
 def front_page():
-    return render_template('front.html')
+    data = []
+    if 'urls' in session:
+        data = session['urls']
+    return render_template('front.html', data=data)
 
 
 if __name__ == "__main__":
