@@ -26,7 +26,7 @@ def signup():
             error = "This username is already taken."
         else:
             users[username] = password # worlds least secure user authentication
-            return render_template('front.html')
+            return render_template('quiz.html')
     return render_template('signup.html', error=error)
 
 @app.route('/login', methods=['GET', 'POST'])
