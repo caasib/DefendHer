@@ -24,14 +24,7 @@ var quizData = [
             { text: 'Lift one arm up, turn whole body to opposite side, crunch downwards, trapping attacker\'s hand.', correct: true },
         ]
     },
-    {
-        question: 'How to escape from a hair grab?',
-        answers: [
-            { text: 'Punch the attacker.', correct: false },
-            { text: 'Kick the attacker.', correct: false },
-            { text: 'Lock both hands on top of attacker\'s, squeeze elbows in to protect the face, go under the arm and up and around, push arm forward to dislocate attacker\'s shoulder.', correct: true },
-        ]
-    },
+
     {
         question: 'What are key areas to hit if someone attacks you?',
         answers: [
@@ -101,20 +94,6 @@ function createQuiz() {
 }
 
 createQuiz();
-
-// Function to handle submit button click event
-document.getElementById('submit-btn').addEventListener('click', () => {
-    const resultsContainer = document.getElementById('results');
-    let score = 0;
-
-    document.querySelectorAll('.value-btn').forEach(button => {
-        if (button.classList.contains('active') && button.dataset.correct === 'true') {
-            score++;
-        }
-    });
-
-    resultsContainer.innerHTML = `You got ${score} out of ${quizData.length} questions correct.`;
-});
 
 // Function to handle submit button click event
 document.getElementById('submit-btn').addEventListener('click', () => {
