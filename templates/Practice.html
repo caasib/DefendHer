@@ -40,7 +40,7 @@
             // Display user's response
             var feedback = "<p><strong>You:</strong> " + response + "</p>";
 
-            // Generate AI response
+            // Generate AI response using GPT-3
             generateAIResponse(response, function(aiResponse) {
                 feedback += "<p><strong>AI:</strong> " + aiResponse + "</p>";
                 document.getElementById("feedback").innerHTML = feedback;
@@ -52,11 +52,11 @@
                 url: "https://api.openai.com/v1/completions",
                 type: "POST",
                 headers: {
-                    "Authorization": "Bearer YOUR_OPENAI_API_KEY"
+                    "Authorization": "Bearer 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"
                 },
                 contentType: "application/json",
                 data: JSON.stringify({
-                    "model": "davinci",
+                    "model": "text-davinci-003",
                     "prompt": "User: " + userInput + "\nAI:",
                     "max_tokens": 50
                 }),
