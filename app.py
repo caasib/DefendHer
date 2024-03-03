@@ -66,7 +66,7 @@ def course_page():
 
 @app.route('/Modules', methods=['GET', 'POST'])
 def modules_page():
-    return render_template('Modules.html')
+    return render_template('Course1.html')
 
 @app.route('/Practice', methods=['GET', 'POST'])
 def practice_page():
