@@ -16,3 +16,18 @@
 		-ms-transform: none;
 		transform: none;
 	}
+
+	.course-list {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .course-button {
+        display: inline-block;
+        background-color: #3498db;
+        color: #ffffff;
+        padding: 10px 20px;
+        text-decoration: none;
+        margin: 5px;
+        border-radius: 5px;
+    }
