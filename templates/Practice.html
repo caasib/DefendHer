@@ -6,9 +6,9 @@
     <title>Women's Self-Defense Awareness</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            color: #333;
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f0fc; /* Light purple */
+            color: #4a4a4a; /* Dark gray */
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -25,26 +25,27 @@
 
         h1 {
             text-align: center;
-            color: #6c5ce7; /* Light purple */
+            color: #d33682; /* Pink */
         }
 
         label {
             display: block;
             margin-bottom: 5px;
             font-weight: bold;
+            color: #d33682; /* Pink */
         }
 
         textarea {
             width: 100%;
             padding: 10px;
             margin-bottom: 10px;
-            border: 1px solid #ccc;
+            border: 1px solid #dcdcdc; /* Light gray */
             border-radius: 5px;
         }
 
         button {
             padding: 10px 20px;
-            background-color: #ff6b81; /* Pink */
+            background-color: #d33682; /* Pink */
             color: #fff;
             border: none;
             border-radius: 5px;
@@ -53,7 +54,7 @@
         }
 
         button:hover {
-            background-color: #ff4757; /* Darker pink on hover */
+            background-color: #b71b5a; /* Darker pink on hover */
         }
 
         #feedback {
@@ -61,28 +62,30 @@
         }
 
         .user-response {
-            color: #6c5ce7; /* Light purple */
+            color: #d33682; /* Pink */
         }
 
         .ai-response {
-            color: #fd79a8; /* Lighter pink */
+            color: #b71b5a; /* Darker pink */
         }
     </style>
 </head>
 <body>
-    <h1>Women's Self-Defense Awareness</h1>
-    <div id="scenario-container"></div>
-    <form id="self-defense-form">
-        <label for="response">What would you do in this situation?</label>
-        <textarea id="response" name="response" rows="4" cols="50"></textarea>
-        <br>
-        <button type="submit">Submit</button>
-    </form>
-
+    <div class="container">
+        <h1>Women's Self-Defense Awareness</h1>
+        <div id="scenario-container"></div>
+        <form id="self-defense-form">
+            <label for="response">What would you do in this situation?</label>
+            <textarea id="response" name="response" rows="4" cols="50"></textarea>
+            <br>
+            <button type="submit">Submit</button>
+        </form>
         <div id="feedback"></div>
     </div>
 
     <script>
+        // JavaScript code here
+
         var scenarios = [
             "Walking alone at night",
             "Being followed by a stranger",
@@ -97,7 +100,7 @@
             var randomScenario = scenarios[randomIndex];
             document.getElementById("scenario-container").innerHTML = "<p>Scenario: " + randomScenario + "</p>";
         }
-        
+
         function submitResponse(event) {
             event.preventDefault(); // Prevent default form submission
 
