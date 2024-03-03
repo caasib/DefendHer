@@ -35,6 +35,10 @@ def login():
             error = "Invalid credentials. Please try again."
     return render_template('login.html', error=error)
 
+@app.route('/Modules', methods=['GET', 'POST'])
+def module_page():
+    return render_template('Modules.html')
+
 @app.route('/Courses', methods=['GET', 'POST'])
 def course_page():
     return render_template('Courses.html')

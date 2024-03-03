@@ -1,0 +1,48 @@
+<!-- Course Modules Page -->
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <title>Course Modules</title>
+    <link rel="stylesheet" href="static/assets/css/main.css" />
+    <!-- Add your additional stylesheet links here -->
+</head>
+<body>
+
+<!-- Progress Bar -->
+<div id="progress-bar">
+    <div id="progress"></div>
+</div>
+
+<!-- Course Modules -->
+<section id="course-modules" class="main">
+    <div class="content">
+        <header class="major">
+            <h2>Course Modules</h2>
+        </header>
+
+        <!-- Buttons/Links for Different Course Modules -->
+        <ul class="module-list">
+            <li><a href="#" class="module-button" onclick="updateProgress(20)">Module 1</a></li>
+            <li><a href="#" class="module-button" onclick="updateProgress(40)">Module 2</a></li>
+            <li><a href="#" class="module-button" onclick="updateProgress(60)">Module 3</a></li>
+            <!-- Add more modules as needed -->
+        </ul>
+    </div>
+</section>
+
+<!-- Scripts -->
+<script src="static/assets/js/util.js"></script>
+<script src="static/assets/js/main.js"></script>
+<script>
+        // Function to update progress and navigate to the module
+        function updateProgress(progress) {
+            // Update the progress bar
+            document.getElementById('progress').style.width = progress + '%';
+        }
+    </script>
+
+</body>
+</html>
+
