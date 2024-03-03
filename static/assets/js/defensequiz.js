@@ -1,8 +1,4 @@
-// A personality quiz
-
-// This is an array of objects that stores the personality trait that is prompted to the user and the weight for each prompt. 
-// If a personality trait is considered more introverted, it will have a negative weight.
-// If a personlity trait is considered more extroverted, it will have a positive weight.
+// Defense quiz upon sign-up
 
 var prompts = [
     {
@@ -204,16 +200,18 @@ $(document).on('click', '.value-btn', function () {
 $(document).on('click', '#submit-btn', function () {
     $('.results').removeClass('hide').addClass('show');
 
-    if (total < -3) {
+    if (total < -15) {
         document.getElementById('results').innerHTML = '<b>Beginner</b><br><br>\
             Based on your quiz responses, you have been placed in the Beginner level. This means that you are just starting your journey in self-defense and may have limited experience or training in this area. In the Beginner course, you will learn foundational self-defense techniques, such as basic strikes, blocks, and escapes, designed to help you build confidence and develop essential skills for personal safety. Through structured lessons and practice sessions, you will gradually improve your ability to protect yourself in various situations.\
             ';
-    } else if (total > 3) {
+    } else if (total > 15) {
         document.getElementById('results').innerHTML = '<b>Advanced</b><br><br>\
-            Based on your quiz responses, you have been placed in the Advanced level. This signifies that you possess a high level of skill and proficiency in self-defense. In the Advanced course, you will refine and master advanced techniques, strategies, and tactics for effectively defending yourself in challenging situations. You will learn advanced striking combinations, intricate grappling maneuvers, and specialized defense techniques tailored to various threats. Additionally, you will focus on developing mental toughness, situational awareness, and the ability to adapt to dynamic encounters. Prepare to elevate your self-defense skills to the highest level and become a formidable defender.';
+            Based on your quiz responses, you have been placed in the Advanced level. This signifies that you possess a high level of skill and proficiency in self-defense. In the Advanced course, you will refine and master advanced techniques, strategies, and tactics for effectively defending yourself in challenging situations. You will learn advanced striking combinations, intricate grappling maneuvers, and specialized defense techniques tailored to various threats. Additionally, you will focus on developing mental toughness, situational awareness, and the ability to adapt to dynamic encounters. Prepare to elevate your self-defense skills to the highest level and become a formidable defender.\
+            ';
     } else {
         document.getElementById('results').innerHTML = '<b>Intermediate</b><br><br>\
-            Based on your quiz responses, you have been placed in the Intermediate level. This indicates that you have some experience or training in self-defense and are ready to further develop your skills. In the Intermediate course, you will build upon the foundational techniques learned in the Beginner level and delve deeper into more advanced concepts. You will learn techniques for handling more complex situations, refining your striking and grappling skills, and enhancing your overall self-defense proficiency. With dedication and practice, you will continue to progress towards becoming a more confident and capable defender..'
+            Based on your quiz responses, you have been placed in the Intermediate level. This indicates that you have some experience or training in self-defense and are ready to further develop your skills. In the Intermediate course, you will build upon the foundational techniques learned in the Beginner level and delve deeper into more advanced concepts. You will learn techniques for handling more complex situations, refining your striking and grappling skills, and enhancing your overall self-defense proficiency. With dedication and practice, you will continue to progress towards becoming a more confident and capable defender.\
+            ';
     }
 
     // Hide the quiz after they submit their results
