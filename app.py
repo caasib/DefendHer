@@ -52,6 +52,10 @@ def logout():
 def course_page():
     return render_template('Courses.html')
 
+@app.route('/Modules', methods=['GET', 'POST'])
+def modules_page():
+    return render_template('Modules.html')
+
 @app.route('/front', methods=['GET', 'POST'])
 def front_page():
     data = []
