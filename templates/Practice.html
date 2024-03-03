@@ -4,7 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Women's Self-Defense Awareness</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #6c5ce7; /* Light purple */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #ff6b81; /* Pink */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #ff4757; /* Darker pink on hover */
+        }
+
+        #feedback {
+            margin-top: 20px;
+        }
+
+        .user-response {
+            color: #6c5ce7; /* Light purple */
+        }
+
+        .ai-response {
+            color: #fd79a8; /* Lighter pink */
+        }
+    </style>
 </head>
 <body>
     <h1>Women's Self-Defense Awareness</h1>
@@ -16,7 +79,8 @@
         <button type="submit">Submit</button>
     </form>
 
-    <div id="feedback"></div>
+        <div id="feedback"></div>
+    </div>
 
     <script>
         var scenarios = [
