@@ -135,11 +135,11 @@ var prompts = [
     
                 btn_group.appendChild(button);
                 group.appendChild(btn_group);
-    
-                document.getElementsByClassName('prompt')[li_index].appendChild(group);
             }
+    
+            document.getElementsByClassName('prompt')[li_index].appendChild(group);
         }
-    }
+    }    
     
     createPromptItems();
     createValueButtons();
@@ -175,70 +175,52 @@ var prompts = [
     }
     
     // When user clicks a value to agree/disagree with the prompt, display to the user what they selected
-    $('.value-btn').mousedown(function () {
-        var classList = $(this).attr('class');
-        // console.log(classList);
-        var classArr = classList.split(" ");
-        // console.log(classArr);
-        var this_group = classArr[0];
-        // console.log(this_group);
-    
-        // If button is already selected, de-select it when clicked and subtract any previously added values to the total
-        // Otherwise, de-select any selected buttons in group and select the one just clicked
-        // And subtract deselected weighted value and add the newly selected weighted value to the total
-        if($(this).hasClass('active')) {
-            $(this).removeClass('active');
-            total -= (findPromptWeight(prompts, this_group) * findValueWeight(prompt_values, $(this).text()));
-        } else {
-            // $('[class='thisgroup).prop('checked', false);
-            total -= (findPromptWeight(prompts, this_group) * findValueWeight(prompt_values, $('.'+this_group+'.active').text()));
-            // console.log($('.'+this_group+'.active').text());
-            $('.'+this_group).removeClass('active');
-    
-            // console.log('group' + findValueWeight(prompt_values, $('.'+this_group).text()));
-            // $(this).prop('checked', true);
-            $(this).addClass('active');
-            total += (findPromptWeight(prompts, this_group) * findValueWeight(prompt_values, $(this).text()));
-        }
-    
-        console.log(total);
-    })
-    
-    
-    
-    $('#submit-btn').click(function () {
-        // After clicking submit, add up the totals from answers
-        // For each group, find the value that is active
-        $('.results').removeClass('hide');
-        $('.results').addClass('show');
-        
-        if(total < -3) {
-            // document.getElementById('intro-bar').style.width = ((total / 60) * 100) + '%';
-            // console.log(document.getElementById('intro-bar').style.width);
-            // document.getElementById('intro-bar').innerHTML= ((total / 60) * 100) + '%';
-            document.getElementById('results').innerHTML = '<b>Beginner</b><br><br>\
+   // When user clicks a value to agree/disagree with the prompt, display to the user what they selected
+$(document).on('click', '.value-btn', function () {
+    var classList = $(this).attr('class');
+    var classArr = classList.split(" ");
+    var this_group = classArr[0];
+
+    if ($(this).hasClass('active')) {
+        $(this).removeClass('active');
+        total -= (findPromptWeight(prompts, this_group) * findValueWeight(prompt_values, $(this).text()));
+    } else {
+        total -= (findPromptWeight(prompts, this_group) * findValueWeight(prompt_values, $('.' + this_group + '.active').text()));
+        $('.' + this_group).removeClass('active');
+        $(this).addClass('active');
+        total += (findPromptWeight(prompts, this_group) * findValueWeight(prompt_values, $(this).text()));
+    }
+
+    console.log(total);
+});
+
+// When user clicks the submit button
+$(document).on('click', '#submit-btn', function () {
+    $('.results').removeClass('hide').addClass('show');
+
+    if (total < -3) {
+        document.getElementById('results').innerHTML = '<b>Beginner</b><br><br>\
             Based on your quiz responses, you have been placed in the Beginner level. This means that you are just starting your journey in self-defense and may have limited experience or training in this area. In the Beginner course, you will learn foundational self-defense techniques, such as basic strikes, blocks, and escapes, designed to help you build confidence and develop essential skills for personal safety. Through structured lessons and practice sessions, you will gradually improve your ability to protect yourself in various situations.\
             ';
-        } else if(total > 3) {
-            document.getElementById('results').innerHTML = '<b>Advanced</b><br><br>\
+    } else if (total > 3) {
+        document.getElementById('results').innerHTML = '<b>Advanced</b><br><br>\
             Based on your quiz responses, you have been placed in the Advanced level. This signifies that you possess a high level of skill and proficiency in self-defense. In the Advanced course, you will refine and master advanced techniques, strategies, and tactics for effectively defending yourself in challenging situations. You will learn advanced striking combinations, intricate grappling maneuvers, and specialized defense techniques tailored to various threats. Additionally, you will focus on developing mental toughness, situational awareness, and the ability to adapt to dynamic encounters. Prepare to elevate your self-defense skills to the highest level and become a formidable defender.';
-        } else {
-            document.getElementById('results').innerHTML = '<b>Intermediate</b><br><br>\
+    } else {
+        document.getElementById('results').innerHTML = '<b>Intermediate</b><br><br>\
             Based on your quiz responses, you have been placed in the Intermediate level. This indicates that you have some experience or training in self-defense and are ready to further develop your skills. In the Intermediate course, you will build upon the foundational techniques learned in the Beginner level and delve deeper into more advanced concepts. You will learn techniques for handling more complex situations, refining your striking and grappling skills, and enhancing your overall self-defense proficiency. With dedication and practice, you will continue to progress towards becoming a more confident and capable defender..'
-        }
-    
-        // Hide the quiz after they submit their results
-        $('#quiz').addClass('hide');
-        $('#submit-btn').addClass('hide');
-        $('#retake-btn').removeClass('hide');
-    })
-    
-    // Refresh the screen to show a new quiz if they click the retake quiz button
-    $('#retake-btn').click(function () {
-        $('#quiz').removeClass('hide');
-        $('#submit-btn').removeClass('hide');
-        $('#retake-btn').addClass('hide');
-    
-        $('.results').addClass('hide');
-        $('.results').removeClass('show');
-    })
+    }
+
+    // Hide the quiz after they submit their results
+    $('#quiz').addClass('hide');
+    $('#submit-btn').addClass('hide');
+    $('#retake-btn').removeClass('hide');
+});
+
+// When user clicks the retake quiz button
+$(document).on('click', '#retake-btn', function () {
+    $('#quiz').removeClass('hide');
+    $('#submit-btn').removeClass('hide');
+    $('#retake-btn').addClass('hide');
+
+    $('.results').addClass('hide').removeClass('show');
+});
