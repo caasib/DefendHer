@@ -40,7 +40,7 @@
             // Display user's response
             var feedback = "<p><strong>You:</strong> " + response + "</p>";
 
-            // Generate AI response using GPT-3
+            // Generate AI response using your backend service
             generateAIResponse(response, function(aiResponse) {
                 feedback += "<p><strong>AI:</strong> " + aiResponse + "</p>";
                 document.getElementById("feedback").innerHTML = feedback;
@@ -48,38 +48,25 @@
         }
 
         function generateAIResponse(userInput, callback) {
-        $.ajax({
-            url: "https://api.openai.com/v1/completions",
-            type: "POST",
-            headers: {
-                "Authorization": "Bearer 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"
-            },
-            contentType: "application/json",
-            data: JSON.stringify({
-                "model": "text-davinci-003",
-                "prompt": "User: " + userInput + "\nAI:",
-                "max_tokens": 50
-            }),
-            success: function(response) {
-                if (response && response.choices && response.choices.length > 0) {
-                    callback(response.choices[0].text.trim());
-                } else {
-                    console.error("Unexpected response format:", response);
-                    callback("Error: Unexpected response format");
+            $.ajax({
+                url: "http://localhost:3000/generateAIResponse", // Update the URL to your backend service endpoint
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({ userInput: userInput }),
+                success: function(response) {
+                    callback(response.aiResponse);
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error:", error);
+                    callback("Error: " + error);
                 }
-            },
-            error: function(xhr, status, error) {
-                console.error("Error:", error);
-                callback("Error: " + error);
-            }
-        });
-    }
-
+            });
+        }
 
         // Assign a random scenario when the page loads
         window.onload = function() {
             assignRandomScenario();
         };
-    </script>
+</script>
 </body>
 </html>
