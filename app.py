@@ -10,6 +10,14 @@ users = {'example':'example', 'admin':'innovateher', 'your':'mom', 'abc':'def', 
 tokenizer = GPT2Tokenizer.from_pretrained("distilgpt2")
 model = GPT2LMHeadModel.from_pretrained("distilgpt2")
 
+@app.route('/courses')
+def courses():
+    return render_template('courses.html')
+
+@app.route('/front')
+def front():
+    return render_template('front.html')
+
 @app.route('/', methods=['GET', 'POST'])
 def homepage():
     return render_template('index.html')
@@ -30,7 +38,7 @@ def signup():
             error = "This username is already taken."
         else:
             users[username] = password # worlds least secure user authentication
-            return render_template('front.html')
+            return render_template('quiz.html')
     return render_template('signup.html', error=error)
 
 @app.route('/login', methods=['GET', 'POST'])
