@@ -95,7 +95,7 @@ function createQuiz() {
 
 createQuiz();
 
-// Function to handle submit button click event
+/// Function to handle submit button click event
 document.getElementById('submit-btn').addEventListener('click', () => {
     const resultsContainer = document.getElementById('results');
     let score = 0;
@@ -129,5 +129,8 @@ document.addEventListener('click', event => {
     if (button.classList.contains('value-btn')) {
         document.querySelectorAll('.value-btn').forEach(btn => btn.classList.remove('active'));
         button.classList.add('active');
+        if (button.dataset.correct === 'true') {
+            score++; // Increment score for correct answer
+        }
     }
 });
