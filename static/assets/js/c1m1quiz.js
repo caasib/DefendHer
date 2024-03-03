@@ -119,12 +119,22 @@ function markModule1AsCompleted() {
     submitButton.classList.add('completed');
 }
 
-// Function to handle click event on answer buttons
 document.addEventListener('click', event => {
     const button = event.target;
     if (button.classList.contains('value-btn')) {
-        document.querySelectorAll('.value-btn').forEach(btn => btn.classList.remove('active'));
+        const buttonGroup = button.classList[0]; // Assuming the first class is the group identifier
+        const buttonsInGroup = document.querySelectorAll('.' + buttonGroup);
+        
+        // Remove active class and reset background color from buttons in the same group
+        buttonsInGroup.forEach(btn => {
+            btn.classList.remove('active');
+            btn.style.backgroundColor = ''; // Reset background color
+        });
+        
+        // Add active class and change background color to the clicked button
         button.classList.add('active');
+        button.style.backgroundColor = '#333'; // Change color as desired
+        
         if (button.dataset.correct === 'true') {
             score++; // Increment score for correct answer
         }
