@@ -14,7 +14,12 @@
 		<noscript><link rel="stylesheet" href="static/assets/css/noscript.css" /></noscript>
         <style>
             .value-btn.active {
-                background-color: #333; /* Darken color when selected */
+                background-color: #333; /* Darken color when selected */ 
+            }
+
+            /* Initially hide the Course 1 button */
+            #course1-btn {
+                display: none;
             }
         </style>
 	</head>
@@ -43,13 +48,7 @@
                     <!-- Placeholder for quiz results -->
                     <div id="results"></div>
                     <br>
-                    <button id="submit-btn" class="button primary">Submit</button>
-                    <style>
-                        /* Initially hide the Course 1 button */
-                        #course1-btn {
-                            display: none;
-                        }
-                    </style>                  
+                    <button id="submit-btn" class="button primary">Submit</button>          
                 </section>
             </div>
 
