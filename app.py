@@ -90,5 +90,13 @@ def front_page():
 def module_page():
     return render_template('ModulePage.html')
 
+@app.route('/Course1', methods=['GET', 'POST'])
+def course_one():
+    return render_template('Course1.html')
+
+@app.route('/C1M1', methods=['GET', 'POST'])
+def c1m1():
+    return render_template('C1M1.html')
+
 if __name__ == "__main__":
     app.run()
