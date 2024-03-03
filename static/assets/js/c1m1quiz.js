@@ -119,10 +119,9 @@ document.getElementById('submit-btn').addEventListener('click', () => {
 function markModule1AsCompleted() {
     // You can add code here to mark Module 1 as completed, such as changing its appearance or adding a checkmark icon.
     // For example:
-    const module1Button = document.querySelector('.module-button');
-    module1Button.classList.add('completed');
+    const submitButton = document.getElementById('submit-btn');
+    submitButton.classList.add('completed');
 }
-
 
 // Function to handle click event on answer buttons
 document.addEventListener('click', event => {
