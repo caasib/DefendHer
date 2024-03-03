@@ -4,7 +4,7 @@ import secrets
 app = Flask(__name__, static_url_path='/static')
 app.secret_key = secrets.token_urlsafe(32)
 
-users = {'example':'example', 'admin':'innovateher', 'your':'mom'}
+users = {'example':'example', 'admin':'innovateher', 'your':'mom', 'abc':'def', 'demo':'password'}
 
 @app.route('/', methods=['GET', 'POST'])
 def homepage():
@@ -55,6 +55,10 @@ def course_page():
 @app.route('/Modules', methods=['GET', 'POST'])
 def modules_page():
     return render_template('Modules.html')
+
+@app.route('/Practice', methods=['GET', 'POST'])
+def practice_page():
+    return render_template('Practice.html')
 
 @app.route('/front', methods=['GET', 'POST'])
 def front_page():
