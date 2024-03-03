@@ -183,6 +183,15 @@ $(document).on('click', '.value-btn', function () {
     // Add active class to the clicked button
     $(this).addClass('active');
 
+    // Lighten the background color of previously clicked buttons in the same group
+    $clickedButton.siblings().css('background-color', '');
+
+    // Add active class to the clicked button
+    $clickedButton.addClass('active');
+
+    // Darken the background color of the clicked button
+    $(this).css('background-color', '#333');
+
     // Calculate the total score based on user selections
     total = 0;
     $('.value-btn.active').each(function () {
@@ -211,7 +220,7 @@ $(document).on('click', '#submit-btn', function () {
     } else {
         document.getElementById('results').innerHTML = '<b>Intermediate</b><br><br>\
             Based on your quiz responses, you have been placed in the Intermediate level. This indicates that you have some experience or training in self-defense and are ready to further develop your skills. In the Intermediate course, you will build upon the foundational techniques learned in the Beginner level and delve deeper into more advanced concepts. You will learn techniques for handling more complex situations, refining your striking and grappling skills, and enhancing your overall self-defense proficiency. With dedication and practice, you will continue to progress towards becoming a more confident and capable defender.\
-            ';
+            '
     }
 
     // Hide the quiz after they submit their results
