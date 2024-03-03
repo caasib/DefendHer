@@ -1,7 +1,4 @@
 
-// Hide the Course 1 button initially
-//$('#course1-btn').addClass('hide');
-
 // Defense quiz upon sign-up
 
 var prompts = [
@@ -214,13 +211,6 @@ $(document).on('click', '#submit-btn', function () {
         document.getElementById('results').innerHTML = '<b>Beginner</b><br><br>\
             Based on your quiz responses, you have been placed in the Beginner level. This means that you are just starting your journey in self-defense and may have limited experience or training in this area. In the Beginner course, you will learn foundational self-defense techniques, such as basic strikes, blocks, and escapes, designed to help you build confidence and develop essential skills for personal safety. Through structured lessons and practice sessions, you will gradually improve your ability to protect yourself in various situations.\
             ';
-        // Show Course 1 Button
-        $('#course1-btn').removeClass('hide');
-
-        // Add event listener to Course 1 button
-        $('#course1-btn').click(function() {
-            window.location.href = './course1'; // Redirect to course1.html
-        });
     } else if (total > 15) {
         document.getElementById('results').innerHTML = '<b>Advanced</b><br><br>\
             Based on your quiz responses, you have been placed in the Advanced level. This signifies that you possess a high level of skill and proficiency in self-defense. In the Advanced course, you will refine and master advanced techniques, strategies, and tactics for effectively defending yourself in challenging situations. You will learn advanced striking combinations, intricate grappling maneuvers, and specialized defense techniques tailored to various threats. Additionally, you will focus on developing mental toughness, situational awareness, and the ability to adapt to dynamic encounters. Prepare to elevate your self-defense skills to the highest level and become a formidable defender.\
