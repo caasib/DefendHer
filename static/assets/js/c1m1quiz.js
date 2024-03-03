@@ -60,6 +60,8 @@ var quizData = [
     // Add more questions as needed
 ];
 
+let score = 0;
+
 // Function to create quiz questions
 function createQuiz() {
     const questionList = document.getElementById('question-list');
@@ -93,12 +95,12 @@ function createQuiz() {
     });
 }
 
+
 createQuiz();
 
 /// Function to handle submit button click event
 document.getElementById('submit-btn').addEventListener('click', () => {
     const resultsContainer = document.getElementById('results');
-    let score = 0;
 
     document.querySelectorAll('.value-btn').forEach(button => {
         if (button.classList.contains('active') && button.dataset.correct === 'true') {
