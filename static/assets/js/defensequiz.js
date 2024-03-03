@@ -174,22 +174,28 @@ var prompts = [
         return weight;
     }
     
-    // When user clicks a value to agree/disagree with the prompt, display to the user what they selected
-   // When user clicks a value to agree/disagree with the prompt, display to the user what they selected
+// When user clicks a value to agree/disagree with the prompt
 $(document).on('click', '.value-btn', function () {
     var classList = $(this).attr('class');
     var classArr = classList.split(" ");
     var this_group = classArr[0];
+    var selectedValue = $(this).text();
 
-    if ($(this).hasClass('active')) {
-        $(this).removeClass('active');
-        total -= (findPromptWeight(prompts, this_group) * findValueWeight(prompt_values, $(this).text()));
-    } else {
-        total -= (findPromptWeight(prompts, this_group) * findValueWeight(prompt_values, $('.' + this_group + '.active').text()));
-        $('.' + this_group).removeClass('active');
-        $(this).addClass('active');
-        total += (findPromptWeight(prompts, this_group) * findValueWeight(prompt_values, $(this).text()));
-    }
+    // Remove active class from other buttons in the same group
+    $('.' + this_group).removeClass('active');
+    
+    // Add active class to the clicked button
+    $(this).addClass('active');
+
+    // Calculate the total score based on user selections
+    total = 0;
+    $('.value-btn.active').each(function () {
+        var buttonClassList = $(this).attr('class');
+        var buttonClassArr = buttonClassList.split(" ");
+        var buttonGroup = buttonClassArr[0];
+        var buttonValue = $(this).text();
+        total += findPromptWeight(prompts, buttonGroup) * findValueWeight(prompt_values, buttonValue);
+    });
 
     console.log(total);
 });
