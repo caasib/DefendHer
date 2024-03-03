@@ -14,6 +14,10 @@ model = GPT2LMHeadModel.from_pretrained("distilgpt2")
 def m1quiz():
     return render_template('M1quiz.html')
 
+@app.route('/wip')
+def m1quiz():
+    return render_template('wip.html')
+
 @app.route('/c1m1')
 def c1m1():
     return render_template('C1M1.html')
