@@ -78,6 +78,9 @@ def front_page():
         data = session['urls']
     return render_template('front.html', data=data)
 
+@app.route('/ModulePage', methods=['GET', 'POST'])
+def module_page():
+    return render_template('ModulePage.html')
 
 if __name__ == "__main__":
     app.run()
