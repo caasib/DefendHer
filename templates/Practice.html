@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Women's Self-Defense Awareness</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #6c5ce7; /* Light purple */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #ff6b81; /* Pink */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #ff4757; /* Darker pink on hover */
+        }
+
+        #feedback {
+            margin-top: 20px;
+        }
+
+        .user-response {
+            color: #6c5ce7; /* Light purple */
+        }
+
+        .ai-response {
+            color: #fd79a8; /* Lighter pink */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Women's Self-Defense Awareness</h1>
+        <form id="self-defense-form">
+            <label for="response">What would you do in this situation?</label>
+            <textarea id="response" name="response" rows="4" cols="50"></textarea>
+            <br>
+            <button type="button" onclick="submitResponse()">Submit</button>
+        </form>
+
+        <div id="feedback"></div>
+    </div>
+
+    <script>
+        function submitResponse() {
+            var response = document.getElementById("response").value;
+
+            // Display user's response
+            var feedback = "<p class='user-response'><strong>You:</strong> " + response + "</p>";
+
+            // Generate AI response
+            var aiResponse = generateAIResponse(response);
+            feedback += "<p class='ai-response'><strong>Chatbot:</strong> " + aiResponse + "</p>";
+
+            // Display feedback
+            document.getElementById("feedback").innerHTML = feedback;
+        }
+
+        function generateAIResponse(userInput) {
+            // Simple rule-based approach to generate AI response based on user input
+            var aiResponse = "";
+
+            // Example rules for generating AI response
+            if (userInput.toLowerCase().includes("call police")) {
+                aiResponse = "That's a good decision! Calling the police is an important step in many self-defense situations.";
+            } else if (userInput.toLowerCase().includes("run away")) {
+                aiResponse = "Running away can be an effective strategy in many scenarios, especially if you feel threatened.";
+            } else {
+                aiResponse = "Thank you for sharing your response. Remember to stay calm and assess the situation carefully.";
+            }
+
+            return aiResponse;
+        }
+    </script>
+</body>
+</html>
