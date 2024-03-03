@@ -70,48 +70,69 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Women's Self-Defense Awareness</h1>
-        <form id="self-defense-form">
-            <label for="response">What would you do in this situation?</label>
-            <textarea id="response" name="response" rows="4" cols="50"></textarea>
-            <br>
-            <button type="button" onclick="submitResponse()">Submit</button>
-        </form>
+    <h1>Women's Self-Defense Awareness</h1>
+    <div id="scenario-container"></div>
+    <form id="self-defense-form">
+        <label for="response">What would you do in this situation?</label>
+        <textarea id="response" name="response" rows="4" cols="50"></textarea>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
 
         <div id="feedback"></div>
     </div>
 
     <script>
-        function submitResponse() {
-            var response = document.getElementById("response").value;
+        var scenarios = [
+            "Walking alone at night",
+            "Being followed by a stranger",
+            "Confrontation with an aggressive individual",
+            "Home invasion",
+            "Carjacking or being attacked in a parking lot",
+            "Other"
+        ];
 
-            // Display user's response
-            var feedback = "<p class='user-response'><strong>You:</strong> " + response + "</p>";
+        function assignRandomScenario() {
+            var randomIndex = Math.floor(Math.random() * scenarios.length);
+            var randomScenario = scenarios[randomIndex];
+            document.getElementById("scenario-container").innerHTML = "<p>Scenario: " + randomScenario + "</p>";
+        }
+        
+        function submitResponse(event) {
+            event.preventDefault(); // Prevent default form submission
 
-            // Generate AI response
-            var aiResponse = generateAIResponse(response);
-            feedback += "<p class='ai-response'><strong>Chatbot:</strong> " + aiResponse + "</p>";
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/Practice", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
 
-            // Display feedback
-            document.getElementById("feedback").innerHTML = feedback;
+            // Define the user input
+            var userInput = { input: document.getElementById("response").value };
+
+            // Convert the user input to JSON and send the request
+            xhr.send(JSON.stringify(userInput));
+
+            // Handle the response
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    // Parse the JSON response
+                    var response = JSON.parse(xhr.responseText);
+
+                    // Display the generated text
+                    var generatedTextElement = document.getElementById('feedback');
+                    generatedTextElement.textContent = response.generated_text;
+                } else {
+                    console.error('Request failed. Status:', xhr.status);
+                }
+            };
         }
 
-        function generateAIResponse(userInput) {
-            // Simple rule-based approach to generate AI response based on user input
-            var aiResponse = "";
+        // Assign a random scenario when the page loads
+        window.onload = function() {
+            assignRandomScenario();
+        };
 
-            // Example rules for generating AI response
-            if (userInput.toLowerCase().includes("call police")) {
-                aiResponse = "That's a good decision! Calling the police is an important step in many self-defense situations.";
-            } else if (userInput.toLowerCase().includes("run away")) {
-                aiResponse = "Running away can be an effective strategy in many scenarios, especially if you feel threatened.";
-            } else {
-                aiResponse = "Thank you for sharing your response. Remember to stay calm and assess the situation carefully.";
-            }
-
-            return aiResponse;
-        }
+        // Add event listener for form submission
+        document.getElementById("self-defense-form").addEventListener("submit", submitResponse);
     </script>
 </body>
 </html>

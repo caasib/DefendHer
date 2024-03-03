@@ -1,10 +1,14 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify
+from transformers import GPT2Tokenizer, GPT2LMHeadModel
 import secrets
 
 app = Flask(__name__, static_url_path='/static')
 app.secret_key = secrets.token_urlsafe(32)
 
-users = {'example':'example', 'admin':'innovateher', 'your':'mom'}
+users = {'example':'example', 'admin':'innovateher', 'your':'mom', 'abc':'def', 'demo':'password'}
+
+tokenizer = GPT2Tokenizer.from_pretrained("distilgpt2")
+model = GPT2LMHeadModel.from_pretrained("distilgpt2")
 
 @app.route('/', methods=['GET', 'POST'])
 def homepage():
@@ -56,9 +60,16 @@ def course_page():
 def modules_page():
     return render_template('Modules.html')
 
-@app.route('/ModulePage', methods=['GET', 'POST'])
-def user():
-    return render_template('ModulePage.html')
+@app.route('/Practice', methods=['GET', 'POST'])
+def practice_page():
+    error = None
+    if request.method == 'POST':
+        response = request.json['input']  # Corrected to use request.json and access the 'input' key
+        input_ids = tokenizer.encode(response, return_tensors='pt')
+        output = model.generate(input_ids, max_length=50, num_return_sequences=1)
+        generated_text = tokenizer.decode(output[0], skip_special_tokens=True)
+        return jsonify({"generated_text": generated_text})  # Corrected to use dictionary for jsonify
+    return render_template('Practice.html')
 
 @app.route('/front', methods=['GET', 'POST'])
 def front_page():
