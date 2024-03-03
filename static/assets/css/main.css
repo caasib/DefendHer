@@ -302,6 +302,25 @@ input, select, textarea {
 		text-align: right;
 	}
 
+	.video-container {
+        text-align: center;
+    }
+
+    .center-align {
+        text-align: center;
+    }
+
+    .quiz-button {
+        display: inline-block;
+        margin: 20px auto;
+        padding: 8px 15px;
+        background-color: #3498db;
+        color: #ffffff;
+        text-decoration: none;
+        border-radius: 20px;
+        text-align: center;
+     }
+
 	input, select, textarea {
 		color: #ffffff;
 	}

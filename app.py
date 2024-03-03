@@ -56,6 +56,10 @@ def course_page():
 def modules_page():
     return render_template('Modules.html')
 
+@app.route('/ModulePage', methods=['GET', 'POST'])
+def user():
+    return render_template('ModulePage.html')
+
 @app.route('/front', methods=['GET', 'POST'])
 def front_page():
     data = []
