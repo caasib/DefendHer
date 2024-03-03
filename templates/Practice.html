@@ -17,6 +17,7 @@
 
     <div id="feedback"></div>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         var scenarios = [
             "Walking alone at night",
@@ -36,26 +37,33 @@
         function submitResponse() {
             var response = document.getElementById("response").value;
 
-            // Here you can write your logic to process the response and provide feedback
-            var feedback = generateFeedback(response);
+            // Display user's response
+            var feedback = "<p><strong>You:</strong> " + response + "</p>";
 
-            document.getElementById("feedback").innerHTML = feedback;
+            // Generate AI response
+            generateAIResponse(response, function(aiResponse) {
+                feedback += "<p><strong>AI:</strong> " + aiResponse + "</p>";
+                document.getElementById("feedback").innerHTML = feedback;
+            });
         }
 
-        function generateFeedback(response) {
-            // Write your logic to generate feedback based on the user's response
-            var feedbackMessage = "";
-
-            // Example feedback generation based on response
-            if (response.toLowerCase().includes("call police")) {
-                feedbackMessage = "That's a good response! Calling the police is an important step in many self-defense situations.";
-            } else if (response.toLowerCase().includes("run away")) {
-                feedbackMessage = "Running away can be an effective strategy in many scenarios, especially if you feel threatened.";
-            } else {
-                feedbackMessage = "Thank you for sharing your response. Remember to stay calm and assess the situation carefully.";
-            }
-
-            return feedbackMessage;
+        function generateAIResponse(userInput, callback) {
+            $.ajax({
+                url: "https://api.openai.com/v1/completions",
+                type: "POST",
+                headers: {
+                    "Authorization": "Bearer YOUR_OPENAI_API_KEY"
+                },
+                contentType: "application/json",
+                data: JSON.stringify({
+                    "model": "davinci",
+                    "prompt": "User: " + userInput + "\nAI:",
+                    "max_tokens": 50
+                }),
+                success: function(response) {
+                    callback(response.choices[0].text.trim());
+                }
+            });
         }
 
         // Assign a random scenario when the page loads
