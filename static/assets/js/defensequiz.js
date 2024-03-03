@@ -183,6 +183,12 @@ $(document).on('click', '.value-btn', function () {
     // Add active class to the clicked button
     $(this).addClass('active');
 
+    // Lighten the background color of previously clicked buttons in the same group
+    $clickedButton.siblings().css('background-color', '');
+
+    // Add active class to the clicked button
+    $clickedButton.addClass('active');
+
     // Darken the background color of the clicked button
     $(this).css('background-color', '#333');
 
