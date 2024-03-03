@@ -10,6 +10,10 @@ users = {'example':'example', 'admin':'innovateher', 'your':'mom', 'abc':'def', 
 tokenizer = GPT2Tokenizer.from_pretrained("distilgpt2")
 model = GPT2LMHeadModel.from_pretrained("distilgpt2")
 
+@app.route('/m1quiz')
+def m1quiz():
+    return render_template('M1quiz.html')
+
 @app.route('/c1m1')
 def c1m1():
     return render_template('C1M1.html')
