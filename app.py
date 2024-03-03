@@ -10,6 +10,12 @@ users = {'example':'example', 'admin':'innovateher', 'your':'mom'}
 def homepage():
     return render_template('index.html')
 
+@app.after_request
+def store_visited_url(r):
+    session['url'] = request.url
+    session.modified = True
+    return r
+
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     error = None
@@ -35,9 +41,12 @@ def login():
             error = "Invalid credentials. Please try again."
     return render_template('login.html', error=error)
 
-@app.route('/Modules', methods=['GET', 'POST'])
-def module_page():
-    return render_template('Modules.html')
+@app.route('/logout')
+def logout():
+    # Clear the user's session data
+    session.clear()
+    # Redirect the user to the home page or a login page
+    return redirect(url_for('homepage'))
 
 @app.route('/Courses', methods=['GET', 'POST'])
 def course_page():
@@ -45,7 +54,10 @@ def course_page():
 
 @app.route('/front', methods=['GET', 'POST'])
 def front_page():
-    return render_template('front.html')
+    data = []
+    if 'urls' in session:
+        data = session['urls']
+    return render_template('front.html', data=data)
 
 
 if __name__ == "__main__":
