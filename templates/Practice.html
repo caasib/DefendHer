@@ -1,64 +1,67 @@
-<html>
-    <head>
-        <title>Practice</title>
-        <meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="static/assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="static/assets/css/noscript.css" /></noscript>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Women's Self-Defense Awareness</title>
+</head>
+<body>
+    <h1>Women's Self-Defense Awareness</h1>
+    <div id="scenario-container"></div>
+    <form id="self-defense-form">
+        <label for="response">What would you do in this situation?</label>
+        <textarea id="response" name="response" rows="4" cols="50"></textarea>
+        <br>
+        <button type="button" onclick="submitResponse()">Submit</button>
+    </form>
 
-        <div id="wrapper">
-            <header id="header" class="alt">
-                <h1>Women's Self-Defense Awareness Practice Scenarios</h1>
-            </header>
+    <div id="feedback"></div>
 
-        <div id="main">
-            <header>
-                <h2>Please select a scenario from the list below:</h2>
-                <ol class="button-list">
-                    <li><button type="button">1. Walking alone at night</button></li>
-                    <li><button type="button">2. Being followed by a stranger</button></li>
-                    <li><button type="button">3. Confrontation with an aggressive individual</button></li>
-                    <li><button type="button">4. Home invasion</button></li>
-                    <li><button type="button">5. Carjacking or being attacked in a parking lot</button></li>
-                    <li><button type="button">6. Other (please describe)</button></li>
-                </ol>
-            </header>
+    <script>
+        var scenarios = [
+            "Walking alone at night",
+            "Being followed by a stranger",
+            "Confrontation with an aggressive individual",
+            "Home invasion",
+            "Carjacking or being attacked in a parking lot",
+            "Other"
+        ];
 
-        </div>
-        </div>
-    </head>
+        function assignRandomScenario() {
+            var randomIndex = Math.floor(Math.random() * scenarios.length);
+            var randomScenario = scenarios[randomIndex];
+            document.getElementById("scenario-container").innerHTML = "<p>Scenario: " + randomScenario + "</p>";
+        }
+
+        function submitResponse() {
+            var response = document.getElementById("response").value;
+
+            // Here you can write your logic to process the response and provide feedback
+            var feedback = generateFeedback(response);
+
+            document.getElementById("feedback").innerHTML = feedback;
+        }
+
+        function generateFeedback(response) {
+            // Write your logic to generate feedback based on the user's response
+            var feedbackMessage = "";
+
+            // Example feedback generation based on response
+            if (response.toLowerCase().includes("call police")) {
+                feedbackMessage = "That's a good response! Calling the police is an important step in many self-defense situations.";
+            } else if (response.toLowerCase().includes("run away")) {
+                feedbackMessage = "Running away can be an effective strategy in many scenarios, especially if you feel threatened.";
+            } else {
+                feedbackMessage = "Thank you for sharing your response. Remember to stay calm and assess the situation carefully.";
+            }
+
+            return feedbackMessage;
+        }
+
+        // Assign a random scenario when the page loads
+        window.onload = function() {
+            assignRandomScenario();
+        };
+    </script>
+</body>
 </html>
-
-def display_menu():
-    print("Welcome to the Women's Self-Defense Awareness Test")
-    print("Please select a scenario from the list below:")
-    print("1. Walking alone at night")
-    print("2. Being followed by a stranger")
-    print("3. Confrontation with an aggressive individual")
-    print("4. Home invasion")
-    print("5. Carjacking or being attacked in a parking lot")
-    print("6. Other (please describe)")
-
-def handle_scenario(scenario):
-    if scenario == 1:
-        print("If you're walking alone at night, consider walking in well-lit areas, stay aware of your surroundings, and have a self-defense tool like pepper spray or a personal alarm ready.")
-    elif scenario == 2:
-        print("If you're being followed by a stranger, try to stay in populated areas, vary your route, and seek help from nearby people or authorities.")
-    elif scenario == 3:
-        print("In a confrontation with an aggressive individual, try to remain calm, assertively communicate your boundaries, and if necessary, use self-defense techniques to create distance and escape.")
-    elif scenario == 4:
-        print("During a home invasion, prioritize your safety and that of your loved ones. Have a plan in place, such as a safe room or an escape route, and contact emergency services immediately.")
-    elif scenario == 5:
-        print("If faced with a carjacking or attack in a parking lot, try to stay calm, hand over your belongings if demanded, and look for opportunities to escape or attract attention.")
-    elif scenario == 6:
-        other_scenario = input("Please describe the scenario: ")
-        print("For the scenario '{}'".format(other_scenario))
-        print("Consider similar strategies mentioned for other scenarios, and adapt based on the specific circumstances.")
-
-def main():
-    display_menu()
-    scenario_choice = int(input("Enter the number corresponding to the scenario you'd like to learn about: "))
-    handle_scenario(scenario_choice)
-
-if __name__ == "__main__":
-    main()
