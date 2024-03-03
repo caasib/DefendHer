@@ -214,12 +214,8 @@ $(document).on('click', '#submit-btn', function () {
         document.getElementById('results').innerHTML = '<b>Beginner</b><br><br>\
             Based on your quiz responses, you have been placed in the Beginner level. This means that you are just starting your journey in self-defense and may have limited experience or training in this area. In the Beginner course, you will learn foundational self-defense techniques, such as basic strikes, blocks, and escapes, designed to help you build confidence and develop essential skills for personal safety. Through structured lessons and practice sessions, you will gradually improve your ability to protect yourself in various situations.\
             ';
-        /// Create and show Course 1 button
-        var course1Button = document.createElement('button');
-        course1Button.setAttribute('id', 'course1-btn');
-        course1Button.setAttribute('class', 'button');
-        course1Button.textContent = 'Take Course 1';
-        document.getElementById('results').appendChild(course1Button);
+        // Show Course 1 Button
+        $('#course1-btn').removeClass('hide');
 
         // Add event listener to Course 1 button
         course1Button.addEventListener('click', function() {
