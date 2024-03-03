@@ -15,7 +15,7 @@ def m1quiz():
     return render_template('M1quiz.html')
 
 @app.route('/wip')
-def m1quiz():
+def wip():
     return render_template('wip.html')
 
 @app.route('/c1m1')
