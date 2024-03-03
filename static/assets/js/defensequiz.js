@@ -1,6 +1,6 @@
 
 // Hide the Course 1 button initially
-$('#course1-btn').addClass('hide');
+//$('#course1-btn').addClass('hide');
 
 // Defense quiz upon sign-up
 
@@ -218,7 +218,7 @@ $(document).on('click', '#submit-btn', function () {
         $('#course1-btn').removeClass('hide');
 
         // Add event listener to Course 1 button
-        course1Button.addEventListener('click', function() {
+        $('#course1-btn').click(function() {
             window.location.href = './course1'; // Redirect to course1.html
         });
     } else if (total > 15) {
