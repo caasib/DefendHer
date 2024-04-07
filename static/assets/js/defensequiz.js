@@ -188,7 +188,7 @@ $(document).on('click', '.value-btn', function () {
     $(this).addClass('active');
 
     // Darken the background color of the clicked button
-    $(this).css('background-color', '#333');
+    $(this).css('background-color', '#555');
 
     // Calculate the total score based on user selections
     total = 0;

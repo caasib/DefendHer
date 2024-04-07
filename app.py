@@ -1,11 +1,10 @@
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 from transformers import GPT2Tokenizer, GPT2LMHeadModel
 import secrets
+import json
 
 app = Flask(__name__, static_url_path='/static')
 app.secret_key = secrets.token_urlsafe(32)
-
-users = {'example':'example', 'admin':'innovateher', 'your':'mom', 'abc':'def', 'demo':'password'}
 
 tokenizer = GPT2Tokenizer.from_pretrained("distilgpt2")
 model = GPT2LMHeadModel.from_pretrained("distilgpt2")
@@ -26,9 +25,7 @@ def c1m1():
 def courses():
     return render_template('courses.html')
 
-@app.route('/front')
-def front():
-    return render_template('front.html')
+
 
 @app.route('/', methods=['GET', 'POST'])
 def homepage():
@@ -40,16 +37,26 @@ def store_visited_url(r):
     session.modified = True
     return r
 
+def save_users(users):
+    with open("users.json", "w") as file:
+        json.dump(users, file)
+
+def load_users():
+    with open("users.json", "r") as file:
+        return json.load(file)
+
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     error = None
     if request.method == 'POST':
+        users = load_users()
         username = request.form['username']
         password = request.form['password']
-        if username in users.keys():
+        if username in users:
             error = "This username is already taken."
         else:
             users[username] = password # worlds least secure user authentication
+            save_users(users)
             return render_template('quiz.html')
     return render_template('signup.html', error=error)
 
@@ -57,9 +64,10 @@ def signup():
 def login():
     error = None
     if request.method == 'POST':
+        users = load_users()
         username = request.form['username']
         password = request.form['password']  
-        if username in users.keys() and password == users[username]:
+        if username in users and password == users[username]:
             return render_template('front.html')
         else:
             error = "Invalid credentials. Please try again."

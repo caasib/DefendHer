@@ -122,8 +122,9 @@ function markModule1AsCompleted() {
 document.addEventListener('click', event => {
     const button = event.target;
     if (button.classList.contains('value-btn')) {
-        document.querySelectorAll('.value-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.value-btn').forEach(btn => btn.classList.remove('active'), btn.css('background-color', ''));
         button.classList.add('active');
+        button.css('background-color', '#444')
         if (button.dataset.correct === 'true') {
             score++; // Increment score for correct answer
         }
